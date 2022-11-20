@@ -122,14 +122,14 @@ void vLerConfiguracao(void)
     config.wifi_pwd = "naotemsenha";
     config.wifi_dhcp = true;
 
-    config.wifi_ip[0] = 192; config.wifi_ip[1] = 168; config.wifi_ip[2] = 1; config.wifi_ip[3] = 100;
-    config.wifi_msk[0] = 255; config.wifi_msk[1] = 255; config.wifi_msk[2] = 255; config.wifi_msk[3] = 0;
-    config.wifi_gtw[0] = 192; config.wifi_gtw[1] = 168; config.wifi_gtw[2] = 1; config.wifi_gtw[3] = 1;
-    config.wifi_dns[0] = 192; config.wifi_dns[1] = 168; config.wifi_dns[2] = 1; config.wifi_dns[3] = 1;
+    // config.wifi_ip[0] = 192; config.wifi_ip[1] = 168; config.wifi_ip[2] = 1; config.wifi_ip[3] = 100;
+    // config.wifi_msk[0] = 255; config.wifi_msk[1] = 255; config.wifi_msk[2] = 255; config.wifi_msk[3] = 0;
+    // config.wifi_gtw[0] = 192; config.wifi_gtw[1] = 168; config.wifi_gtw[2] = 1; config.wifi_gtw[3] = 1;
+    // config.wifi_dns[0] = 192; config.wifi_dns[1] = 168; config.wifi_dns[2] = 1; config.wifi_dns[3] = 1;
 
-    config.ntp_name = "0.br.pool.ntp.org";
-    config.ntp_time = 1;
-    config.ntp_timezone = -30;
+    // config.ntp_name = "0.br.pool.ntp.org";
+    // config.ntp_time = 1;
+    // config.ntp_timezone = -30;
 
     config.rois[1] = 1; config.rois[2] = 1; config.rois[3] = 1; config.rois[4] = 1; config.rois[5] = 1;
     config.rois[6] = 1; config.rois[7] = 1; config.rois[8] = 1; config.rois[9] = 1; config.rois[10] = 1;
