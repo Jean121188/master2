@@ -118,7 +118,7 @@ void vLerConfiguracao(void)
   if (!bReadConfig())
   {
     config.tem_dados = true;
-    config.wifi_ssid = "Rep Uteiro";
+    config.wifi_ssid = "Rep. Uteiro";
     config.wifi_pwd = "naotemsenha";
     config.wifi_dhcp = true;
 

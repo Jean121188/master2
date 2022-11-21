@@ -43,8 +43,10 @@ void vInicialized_cam(void)
 }
 
 void vGetSpiffImg(String path, String TyPe){ 
- if(LittleFS.exists(path)){ 
-    File file = LittleFS.open(path, "r");
+//  if(LittleFS.exists(path)){
+if(SD_MMC.exists(path)){ 
+    // File file = LittleFS.open(path, "r");
+    File file = SD_MMC.open(path, "r");
     server.streamFile(file, TyPe);
     file.close();
   }
@@ -122,7 +124,8 @@ void vCrop_image(camera_fb_t *fb, unsigned short cropLeft, unsigned short cropRi
 }
 
 void vGet_actualityphoto(){
-  String values = (String)sReadFile(LittleFS, FILE_PHOTO);
+  // String values = (String)sReadFile(LittleFS, FILE_PHOTO);
+  String values = (String)sReadFile(SD_MMC, FILE_PHOTO);
   server.send ( 200, "text/plain", values);
 }
 
@@ -144,7 +147,8 @@ bool bCuteImage(const char* ROI){
   // ROI1
   // crop_image(camera_fb_t *fb, unsigned short cropLeft, unsigned short cropRight, unsigned short cropTop, unsigned short cropBottom)
   vCrop_image(fb, (unsigned short)config.rois[0], (unsigned short)config.rois[0], (unsigned short)config.rois[0], (unsigned short)config.rois[0]);
-  File file = LittleFS.open(ROI, FILE_WRITE);
+  // File file = LittleFS.open(ROI, FILE_WRITE);
+  File file = SD_MMC.open(ROI, FILE_WRITE);
   if (!file) {
       Serial.println("Failed to open file in writing mode");
   }else {
@@ -158,32 +162,35 @@ bool bCuteImage(const char* ROI){
   }
   file.close();
   esp_camera_fb_return(fb);
-  return bCheckPhoto(LittleFS);
+  // return bCheckPhoto(LittleFS);
+  return bCheckPhoto(SD_MMC);
 }
 
 void vCapturePhotoSaveSpiffs(void)
 {
   camera_fb_t *fb = NULL;
-  bool ok = 0;   
+  bool ok = 0;
   do{
     fb = esp_camera_fb_get(); // função que tira a foto
     if (!fb) {
       Serial.println("Camera capture failed");
       return;
     }
-    File file = LittleFS.open(FILE_PHOTO, FILE_WRITE);
+    
+    fs::FS &fs = SD_MMC;
+    File file = fs.open(FILE_PHOTO, FILE_WRITE);
+    
+    //File file = LittleFS.open(FILE_PHOTO, FILE_WRITE);
     if (!file) {
       Serial.println("Failed to open file in writing mode");
     }else {
       file.write(fb->buf, fb->len); // payload (image), payload length
-      Serial.print("The picture has been saved in ");
-      Serial.print(FILE_PHOTO);
-      Serial.print(" - Size: ");
-      Serial.print(file.size());
-      Serial.println(" bytes");
+      Serial.printf("The picture has been saved in %s - Size: %i bytes \n", FILE_PHOTO, file.size());
     }
     file.close();
     esp_camera_fb_return(fb);
-    ok = bCheckPhoto(LittleFS);
+    // ok = bCheckPhoto(LittleFS);
+    ok = bCheckPhoto(SD_MMC);
   }while(!ok);
+
 }

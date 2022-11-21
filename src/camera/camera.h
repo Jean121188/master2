@@ -3,7 +3,8 @@
 
 #include <Arduino.h>
 #include <FS.h>
-#include <LittleFS.h>
+// #include <LittleFS.h>
+#include <SD_MMC.h>
 #include "esp_camera.h"
 #include "esp_timer.h"
 #include "servidor/servidor.h"

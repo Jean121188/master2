@@ -14,7 +14,7 @@ const char PAGE_Home[] PROGMEM = R"=====(
 </p><br><br><br>
 
 <button type="submit" class="btn">
-        <a style="color: white; font-size: 130%" href="config.html">ACESSAR O SISTEMA</a>
+        <a style="color: white; font-size: 130%" href="/configPhoto.html">ACESSAR O SISTEMA</a>
     </button>
     <br><br>
 <div>

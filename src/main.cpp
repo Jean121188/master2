@@ -21,7 +21,7 @@ void loop() {
   
   server.handleClient();
 
-  if(CutePhoto){
+  if(takeNewPhoto){
     vCapturePhotoSaveSpiffs();
     takeNewPhoto = false;
   }
